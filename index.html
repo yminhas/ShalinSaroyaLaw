@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shalin Saroya Law | Trusted Legal Counsel in Ontario</title>
+  <meta name="description" content="Shalin Saroya Law provides trusted, personalized legal services across real estate, wills and estates, corporate, family, civil litigation, and immigration law in Ontario." />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+  <style>
+:root {
+    --navy: #2B3A52;
+    --navy-deep: #1A2638;
+    --cream: #F5F0E8;
+    --cream-light: #FAF8F4;
+    --gold: #C4A35A;
+    --gold-light: #D4B96A;
+    --gold-muted: rgba(196,163,90,0.15);
+    --slate: #6B7B8D;
+    --text: #3A3A3A;
+    --text-light: #7A7A7A;
+    --white: #FFFFFF;
+    --border: rgba(43,58,82,0.1);
+    --shadow-sm: 0 2px 8px rgba(43,58,82,0.06);
+    --shadow-md: 0 8px 30px rgba(43,58,82,0.1);
+    --shadow-lg: 0 20px 60px rgba(43,58,82,0.15);
+    --radius: 4px;
+    --serif: 'Playfair Display', Georgia, serif;
+    --serif-body: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--cream-light);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── Navigation ─────────────── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  .nav.scrolled {
+    background: rgba(245,240,232,0.98);
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 40px; height: 80px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { height: 60px; cursor: pointer; transition: var(--transition); mix-blend-mode: multiply; }
+  .nav-logo:hover { opacity: 0.8; }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-link {
+    font-family: var(--sans); font-size: 13px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--navy); text-decoration: none; cursor: pointer;
+    position: relative; padding: 4px 0;
+    transition: var(--transition); background: none; border: none;
+  }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0;
+    width: 0; height: 1.5px; background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .nav-link:hover { color: var(--navy-deep); }
+  .nav-cta-btn {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--cream); background: var(--navy);
+    border: none; padding: 12px 28px; cursor: pointer;
+    transition: var(--transition);
+  }
+  .nav-cta-btn:hover { background: var(--gold); color: var(--navy-deep); }
+
+  /* ── Mobile nav ─────────────── */
+  .hamburger {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 32px; height: 24px; position: relative; z-index: 1001;
+  }
+  .hamburger span {
+    display: block; width: 100%; height: 2px; background: var(--navy);
+    position: absolute; left: 0; transition: var(--transition);
+  }
+  .hamburger span:nth-child(1) { top: 0; }
+  .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .hamburger span:nth-child(3) { bottom: 0; }
+  .hamburger.open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--cream); z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-link {
+    font-family: var(--serif); font-size: 28px; color: var(--navy);
+    text-decoration: none; cursor: pointer; background: none; border: none;
+    transition: var(--transition);
+  }
+  .mobile-menu-link:hover { color: var(--gold); }
+
+  @media (max-width: 968px) {
+    .nav-links { display: none; }
+    .nav-cta-btn { display: none; }
+    .hamburger { display: block; }
+  }
+
+  /* ── Hero ────────────────────── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    background: var(--cream);
+    position: relative; overflow: hidden;
+    padding: 120px 40px 80px;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, var(--gold-muted) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(43,58,82,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1280px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge-line { width: 40px; height: 1.5px; background: var(--gold); }
+  .hero-h1 {
+    font-family: var(--serif); font-size: clamp(42px, 5.5vw, 68px);
+    font-weight: 500; color: var(--navy-deep);
+    line-height: 1.12; letter-spacing: -0.5px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease 0.15s both;
+  }
+  .hero-h1 em {
+    font-style: italic; color: var(--gold);
+    position: relative;
+  }
+  .hero-sub {
+    font-family: var(--serif-body); font-size: 17px;
+    line-height: 1.8; color: var(--slate);
+    max-width: 520px; margin-bottom: 44px;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.45s both;
+  }
+  .btn-primary {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    background: var(--navy); color: var(--cream);
+    border: 2px solid var(--navy);
+    padding: 16px 36px; cursor: pointer;
+    transition: var(--transition); text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); color: var(--navy-deep); }
+  .btn-secondary {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    background: transparent; color: var(--navy);
+    border: 2px solid var(--navy);
+    padding: 16px 36px; cursor: pointer;
+    transition: var(--transition); text-decoration: none;
+  }
+  .btn-secondary:hover { background: var(--navy); color: var(--cream); }
+
+  .hero-visual {
+    position: relative;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+  .hero-card {
+    background: var(--white); padding: 48px;
+    box-shadow: var(--shadow-lg);
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 100%);
+  }
+  .hero-card-icon {
+    font-size: 48px; margin-bottom: 20px;
+  }
+  .hero-card h3 {
+    font-family: var(--serif); font-size: 22px; font-weight: 500;
+    color: var(--navy); margin-bottom: 16px;
+  }
+  .hero-card p {
+    font-family: var(--sans); font-size: 15px; line-height: 1.7;
+    color: var(--slate); margin-bottom: 24px;
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    border-top: 1px solid var(--border); padding-top: 24px;
+  }
+  .hero-stat-num {
+    font-family: var(--serif); font-size: 32px; font-weight: 600;
+    color: var(--gold);
+  }
+  .hero-stat-label {
+    font-family: var(--sans); font-size: 12px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--slate); margin-top: 2px;
+  }
+
+  /* ── Section Shared ─────────── */
+  .section {
+    padding: 100px 40px;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .section-full {
+    padding: 100px 40px;
+  }
+  .section-header {
+    text-align: center; margin-bottom: 64px;
+  }
+  .section-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(32px, 4vw, 48px);
+    font-weight: 500; color: var(--navy-deep);
+    line-height: 1.2; letter-spacing: -0.3px;
+  }
+  .section-subtitle {
+    font-family: var(--serif-body); font-size: 16px;
+    line-height: 1.8; color: var(--slate);
+    max-width: 600px; margin: 20px auto 0;
+  }
+
+  /* ── About ──────────────────── */
+  .about-bg { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; max-width: 1280px; margin: 0 auto;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-block {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-img-block img { height: 100px; opacity: 0.3; mix-blend-mode: screen; }
+  .about-img-accent {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 140px; height: 140px;
+    border: 3px solid var(--gold);
+    pointer-events: none;
+  }
+  .about-text h3 {
+    font-family: var(--serif); font-size: 36px; font-weight: 500;
+    color: var(--navy-deep); margin-bottom: 24px; line-height: 1.25;
+  }
+  .about-text p {
+    font-family: var(--serif-body); font-size: 15px;
+    line-height: 1.85; color: var(--slate); margin-bottom: 16px;
+  }
+  .about-values {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-top: 32px;
+  }
+  .about-value {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    color: var(--navy);
+  }
+  .about-value-dot {
+    width: 8px; height: 8px; background: var(--gold);
+    border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ── Services ───────────────── */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .service-card {
+    background: var(--white); padding: 40px;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+    cursor: default; position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.4s ease;
+    transform-origin: left;
+  }
+  .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon { font-size: 36px; margin-bottom: 20px; }
+  .service-title {
+    font-family: var(--serif); font-size: 20px; font-weight: 500;
+    color: var(--navy); margin-bottom: 14px;
+  }
+  .service-desc {
+    font-family: var(--sans); font-size: 14px;
+    line-height: 1.75; color: var(--slate);
+  }
+
+  /* ── Team ────────────────────── */
+  .team-bg { background: var(--cream); }
+  .team-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 32px; max-width: 1280px; margin: 0 auto;
+  }
+  .team-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .team-card:hover { box-shadow: var(--shadow-md); transform: translateY(-6px); }
+  .team-photo {
+    width: 100%; aspect-ratio: 1/1;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 48px; font-weight: 600;
+    color: white; position: relative; overflow: hidden;
+  }
+  .team-photo::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.15) 100%);
+  }
+  .team-info { padding: 24px; }
+  .team-name {
+    font-family: var(--serif); font-size: 18px; font-weight: 600;
+    color: var(--navy); margin-bottom: 4px;
+  }
+  .team-role {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .team-bio {
+    font-family: var(--sans); font-size: 13px;
+    line-height: 1.7; color: var(--slate);
+  }
+
+  /* ── Testimonials ───────────── */
+  .testimonials-bg {
+    background: var(--navy-deep);
+    color: var(--cream);
+  }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 32px; max-width: 1280px; margin: 0 auto;
+  }
+  .testimonial-card {
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    transition: var(--transition);
+  }
+  .testimonial-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(196,163,90,0.3);
+  }
+  .testimonial-quote {
+    font-size: 28px; color: var(--gold); margin-bottom: 16px;
+    font-family: var(--serif);
+  }
+  .testimonial-text {
+    font-family: var(--serif-body); font-size: 15px;
+    line-height: 1.8; color: rgba(245,240,232,0.85);
+    margin-bottom: 24px; font-style: italic;
+  }
+  .testimonial-author {
+    font-family: var(--sans); font-size: 14px; font-weight: 600;
+    color: var(--cream);
+  }
+  .testimonial-area {
+    font-family: var(--sans); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-top: 4px;
+  }
+
+  /* ── Calculators ────────────── */
+  .calc-tabs {
+    display: flex; gap: 0; margin-bottom: 40px; justify-content: center;
+    border: 1px solid var(--border); overflow: hidden; max-width: 720px;
+    margin-left: auto; margin-right: auto;
+  }
+  .calc-tab {
+    flex: 1; padding: 16px 24px; cursor: pointer;
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    background: var(--white); color: var(--slate);
+    border: none; border-right: 1px solid var(--border);
+    transition: var(--transition); text-align: center;
+  }
+  .calc-tab:last-child { border-right: none; }
+  .calc-tab.active { background: var(--navy); color: var(--cream); }
+  .calc-tab:hover:not(.active) { background: var(--cream); }
+  .calc-body {
+    background: var(--white); padding: 48px;
+    border: 1px solid var(--border);
+    max-width: 720px; margin: 0 auto;
+  }
+  .calc-body h3 {
+    font-family: var(--serif); font-size: 24px; font-weight: 500;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .calc-body > p {
+    font-family: var(--sans); font-size: 14px;
+    color: var(--slate); margin-bottom: 32px;
+  }
+  .form-group { margin-bottom: 24px; }
+  .form-label {
+    display: block; font-family: var(--sans); font-size: 12px;
+    font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .form-input {
+    width: 100%; padding: 14px 16px;
+    font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--border); background: var(--cream-light);
+    color: var(--text); transition: var(--transition);
+    outline: none;
+  }
+  .form-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-muted); }
+  .form-select {
+    width: 100%; padding: 14px 16px;
+    font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--border); background: var(--cream-light);
+    color: var(--text); transition: var(--transition);
+    outline: none; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232B3A52' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 16px center;
+  }
+  .form-select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-muted); }
+  .form-checkbox-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  }
+  .form-checkbox-row input[type="checkbox"] {
+    width: 18px; height: 18px; accent-color: var(--navy);
+  }
+  .form-checkbox-row label {
+    font-family: var(--sans); font-size: 14px; color: var(--text);
+  }
+  .calc-result {
+    margin-top: 32px; padding: 32px;
+    background: var(--cream); border-left: 4px solid var(--gold);
+  }
+  .calc-result h4 {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .calc-result .big-num {
+    font-family: var(--serif); font-size: 36px; font-weight: 600;
+    color: var(--navy);
+  }
+  .calc-result-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+    font-family: var(--sans); font-size: 14px; color: var(--text);
+  }
+  .calc-result-row:last-child { border-bottom: none; font-weight: 600; }
+  .calc-disclaimer {
+    margin-top: 20px; font-family: var(--sans); font-size: 12px;
+    color: var(--text-light); line-height: 1.6; font-style: italic;
+  }
+
+  /* ── Contact ────────────────── */
+  .contact-bg { background: var(--cream); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; max-width: 1280px; margin: 0 auto;
+  }
+  .contact-info-card {
+    background: var(--navy-deep); color: var(--cream);
+    padding: 48px; position: relative; overflow: hidden;
+  }
+  .contact-info-card::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(196,163,90,0.15) 0%, transparent 70%);
+  }
+  .contact-info-card h3 {
+    font-family: var(--serif); font-size: 28px; font-weight: 500;
+    margin-bottom: 24px; position: relative;
+  }
+  .contact-info-item {
+    display: flex; gap: 16px; margin-bottom: 24px; position: relative;
+  }
+  .contact-info-icon {
+    width: 44px; height: 44px;
+    background: rgba(196,163,90,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .contact-info-label {
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+  .contact-info-value {
+    font-family: var(--sans); font-size: 15px;
+    color: rgba(245,240,232,0.85); line-height: 1.5;
+  }
+  .contact-divider {
+    width: 100%; height: 1px; background: rgba(255,255,255,0.08);
+    margin: 32px 0;
+  }
+  .contact-book-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    background: var(--gold); color: var(--navy-deep);
+    border: none; padding: 16px 32px; cursor: pointer;
+    transition: var(--transition); text-decoration: none;
+    width: 100%; justify-content: center; margin-top: 20px;
+  }
+  .contact-book-btn:hover { background: var(--gold-light); }
+
+  .contact-form { background: var(--white); padding: 48px; border: 1px solid var(--border); }
+  .contact-form h3 {
+    font-family: var(--serif); font-size: 28px; font-weight: 500;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .contact-form > p {
+    font-family: var(--sans); font-size: 14px;
+    color: var(--slate); margin-bottom: 32px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-textarea {
+    width: 100%; padding: 14px 16px; min-height: 140px; resize: vertical;
+    font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--border); background: var(--cream-light);
+    color: var(--text); transition: var(--transition); outline: none;
+  }
+  .form-textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-muted); }
+  .form-submit {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    background: var(--navy); color: var(--cream);
+    border: none; padding: 16px 40px; cursor: pointer;
+    transition: var(--transition); margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--gold); color: var(--navy-deep); }
+
+  /* ── CTA Banner ─────────────── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    padding: 80px 40px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zM22.344 0L13.858 8.485 15.272 9.9l9.9-9.9h-2.828zM27.998 0l-9.9 9.9 1.414 1.414L29.07 1.757 28.24.928 27.998 0zm5.656 0l-9.9 9.9 1.415 1.414L35.07 1.414 33.656 0zm5.656 0l-9.9 9.9 1.414 1.414L40.727 1.414 39.313 0z' fill='rgba(196,163,90,0.04)' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+  .cta-banner h2 {
+    font-family: var(--serif); font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 500; color: var(--cream); margin-bottom: 16px;
+    position: relative;
+  }
+  .cta-banner p {
+    font-family: var(--sans); font-size: 16px;
+    color: rgba(245,240,232,0.7); margin-bottom: 36px;
+    position: relative;
+  }
+  .cta-banner-btn {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    background: var(--gold); color: var(--navy-deep);
+    border: none; padding: 18px 44px; cursor: pointer;
+    transition: var(--transition); position: relative;
+  }
+  .cta-banner-btn:hover { background: var(--cream); }
+
+  /* ── Footer ─────────────────── */
+  .footer {
+    background: var(--navy-deep); color: rgba(245,240,232,0.7);
+    padding: 80px 40px 0;
+  }
+  .footer-top {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px; padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-brand img { height: 50px; margin-bottom: 20px; filter: brightness(0) invert(1); opacity: 0.9; }
+  .footer-brand p {
+    font-family: var(--sans); font-size: 14px;
+    line-height: 1.7; color: rgba(245,240,232,0.55);
+    max-width: 300px;
+  }
+  .footer-hours {
+    margin-top: 24px;
+  }
+  .footer-hours-title {
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .footer-hours-row {
+    font-family: var(--sans); font-size: 13px;
+    color: rgba(245,240,232,0.55); margin-bottom: 6px;
+  }
+  .footer-col-title {
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .footer-link {
+    display: block; font-family: var(--sans); font-size: 14px;
+    color: rgba(245,240,232,0.6); text-decoration: none;
+    margin-bottom: 12px; cursor: pointer;
+    transition: var(--transition); background: none; border: none;
+    padding: 0; text-align: left;
+  }
+  .footer-link:hover { color: var(--gold); }
+  .footer-social {
+    display: flex; gap: 12px; margin-top: 8px;
+  }
+  .footer-social-icon {
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; cursor: pointer;
+    transition: var(--transition); border: none;
+    color: rgba(245,240,232,0.6); text-decoration: none;
+  }
+  .footer-social-icon:hover { background: var(--gold); color: var(--navy-deep); }
+  .footer-bottom {
+    max-width: 1280px; margin: 0 auto;
+    padding: 24px 0;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy {
+    font-family: var(--sans); font-size: 13px;
+    color: rgba(245,240,232,0.4);
+  }
+  .footer-legal {
+    display: flex; gap: 24px;
+  }
+  .footer-legal a {
+    font-family: var(--sans); font-size: 13px;
+    color: rgba(245,240,232,0.4); text-decoration: none;
+    transition: var(--transition);
+  }
+  .footer-legal a:hover { color: var(--gold); }
+
+  /* ── Animations ─────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── Responsive ─────────────── */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .section, .section-full { padding: 64px 20px; }
+    .hero { padding: 100px 20px 64px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-btns { flex-direction: column; }
+    .calc-tabs { flex-direction: column; }
+    .calc-tab { border-right: none; border-bottom: 1px solid var(--border); }
+    .calc-tab:last-child { border-bottom: none; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .nav-inner { padding: 0 20px; }
+  }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect, useRef, useCallback } = React;
+
+    const LOGO_URL = "logo.png"; // Place your logo.png in the same folder as this HTML file
+const FORMSPREE_URL = "https://formspree.io/f/mlgogbbo";
+const CALENDLY_URL = "https://calendly.com/shalinsaroya/30min";
+
+const NAV_LINKS = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "services", label: "Services" },
+  { id: "team", label: "Our Team" },
+  { id: "calculators", label: "Calculators" },
+  { id: "contact", label: "Contact" },
+];
+
+const PRACTICE_AREAS = [
+  { icon: "🏠", title: "Real Estate Law", desc: "Residential and commercial property transactions, title searches, mortgage refinancing, and land transfer guidance across Ontario." },
+  { icon: "📜", title: "Wills & Estates", desc: "Estate planning, will drafting, powers of attorney, estate administration, and probate applications to protect your legacy." },
+  { icon: "👔", title: "Corporate & Business Law", desc: "Business incorporation, shareholder agreements, corporate restructuring, and ongoing commercial legal counsel." },
+  { icon: "⚖️", title: "Civil Litigation", desc: "Dispute resolution, breach of contract claims, property disputes, and effective courtroom representation." },
+  { icon: "👪", title: "Family Law", desc: "Separation agreements, divorce proceedings, child custody, spousal support, and property division matters." },
+  { icon: "🛡️", title: "Immigration Law", desc: "Work permits, permanent residency applications, family sponsorship, and citizenship proceedings." },
+];
+
+const TEAM_MEMBERS = [
+  { name: "Shalin Saroya", role: "Founder & Principal Lawyer", bio: "Shalin is the founder of Shalin Saroya Law, bringing a client-first approach to legal practice in Ontario. With a deep commitment to justice and community, Shalin provides personalized legal counsel across multiple practice areas.", color: "#2B3A52" },
+  { name: "Priya Mehta", role: "Associate Lawyer", bio: "Priya specializes in real estate and corporate law, guiding clients through complex transactions with precision and care. Her attention to detail ensures every deal closes smoothly.", color: "#4A6741" },
+  { name: "David Chen", role: "Associate Lawyer", bio: "David focuses on family law and civil litigation, advocating passionately for his clients' rights. His empathetic approach and courtroom experience make him a trusted advisor.", color: "#6B4C3B" },
+  { name: "Amira Hassan", role: "Legal Assistant", bio: "Amira keeps the firm running seamlessly, managing client communications, scheduling, and document preparation with exceptional organizational skill.", color: "#5B4A6B" },
+];
+
+const TESTIMONIALS = [
+  { text: "Shalin made our home purchase completely stress-free. His professionalism and knowledge of Ontario real estate law gave us total confidence throughout the process.", author: "Rajesh & Anita P.", area: "Real Estate" },
+  { text: "After struggling with another firm, Shalin Saroya Law handled our family matter with sensitivity and strength. We couldn't have asked for better representation.", author: "Maria L.", area: "Family Law" },
+  { text: "The team helped us incorporate our business and set up proper agreements. Their corporate law expertise saved us from costly mistakes down the road.", author: "James T.", area: "Corporate Law" },
+];
+
+    // ─── Fade-in observer hook ──────────────────────────────────
+function useFadeIn() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.unobserve(el); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return ref;
+}
+
+function FadeIn({ children, className = "", style = {} }) {
+  const ref = useFadeIn();
+  return <div ref={ref} className={`fade-in ${className}`} style={style}>{children}</div>;
+}
+
+// ─── ScalesSVG (inline logo icon) ───────────────────────────
+function ScalesIcon({ size = 40, color = "#2B3A52" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" fill={color} xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 8c2.2 0 4 1.8 4 4v4h0c0 0 0 0 0 0l20 32c0 0 0.5 1 0.5 2.5 0 6.9-9.2 12.5-20.5 12.5v0H54c-11.3 0-20.5-5.6-20.5-12.5 0-1.5 0.5-2.5 0.5-2.5L54 16V12c0-2.2 1.8-4 4-4h-8zm-4 8L28 46c0 0 0 0.5 0 1.5 0 4.7 7.6 8.5 18 8.5s18-3.8 18-8.5c0-1 0-1.5 0-1.5L46 16zM50 8c-2.2 0-4 1.8-4 4v4l-20 32s-0.5 1-0.5 2.5c0 6.9 9.2 12.5 20.5 12.5h0c11.3 0 20.5-5.6 20.5-12.5 0-1.5-0.5-2.5-0.5-2.5L46 16V12c0-2.2-1.8-4-4-4h8zM50 70v18M36 88h28" stroke={color} strokeWidth="3" fill="none" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+// ─── Main App ───────────────────────────────────────────────
+function App() {
+  const [page, setPage] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [calcTab, setCalcTab] = useState(0);
+
+  // Calculator states
+  const [lttPrice, setLttPrice] = useState("");
+  const [lttFirstTime, setLttFirstTime] = useState(false);
+  const [mortPrincipal, setMortPrincipal] = useState("");
+  const [mortRate, setMortRate] = useState("");
+  const [mortAmort, setMortAmort] = useState("25");
+  const [estateValue, setEstateValue] = useState("");
+
+  // Contact form
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", phone: "", service: "", message: "" });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const navigate = useCallback((id) => {
+    setPage(id);
+    setMobileOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  // ── Ontario LTT Calculator ──
+  function calcLTT() {
+    const p = parseFloat(lttPrice);
+    if (!p || p <= 0) return null;
+    let tax = 0;
+    if (p > 2000000) tax += (p - 2000000) * 0.025;
+    if (p > 400000) tax += (Math.min(p, 2000000) - 400000) * 0.02;
+    if (p > 250000) tax += (Math.min(p, 400000) - 250000) * 0.015;
+    if (p > 55000) tax += (Math.min(p, 250000) - 55000) * 0.01;
+    tax += Math.min(p, 55000) * 0.005;
+    let rebate = 0;
+    if (lttFirstTime) rebate = Math.min(tax, 4000);
+    return { tax, rebate, total: tax - rebate };
+  }
+
+  // ── Mortgage Calculator ──
+  function calcMortgage() {
+    const P = parseFloat(mortPrincipal);
+    const annualRate = parseFloat(mortRate);
+    const years = parseInt(mortAmort);
+    if (!P || !annualRate || !years) return null;
+    // Canadian mortgages compound semi-annually
+    const semiAnnualRate = annualRate / 100 / 2;
+    const monthlyRate = Math.pow(1 + semiAnnualRate, 1 / 6) - 1;
+    const n = years * 12;
+    const payment = P * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    const totalPaid = payment * n;
+    const totalInterest = totalPaid - P;
+    return { payment, totalPaid, totalInterest };
+  }
+
+  // ── Estate Admin Tax Calculator ──
+  function calcEAT() {
+    const v = parseFloat(estateValue);
+    if (!v || v <= 0) return null;
+    let tax = 0;
+    if (v <= 50000) {
+      tax = v * 0.005;
+    } else {
+      tax = 50000 * 0.005 + (v - 50000) * 0.015;
+    }
+    return { tax };
+  }
+
+  const fmt = (n) => new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD", minimumFractionDigits: 2 }).format(n);
+
+  // ── Render Pages ──
+  function renderPage() {
+    switch (page) {
+      case "home": return renderHome();
+      case "about": return renderAbout();
+      case "services": return renderServices();
+      case "team": return renderTeam();
+      case "calculators": return renderCalculators();
+      case "contact": return renderContact();
+      default: return renderHome();
+    }
+  }
+
+  function renderHome() {
+    return (
+      <>
+        {/* Hero */}
+        <section className="hero">
+          <div className="hero-inner">
+            <div className="hero-content">
+              <div className="hero-badge">
+                <span className="hero-badge-line" />
+                Licensed to Practice in Ontario
+              </div>
+              <h1 className="hero-h1">
+                Trusted Legal Counsel for Life's <em>Most Important</em> Moments
+              </h1>
+              <p className="hero-sub">
+                At Shalin Saroya Law, we deliver clear, effective legal solutions rooted in integrity. From real estate closings to estate planning, we stand beside you every step of the way.
+              </p>
+              <div className="hero-btns">
+                <button className="btn-primary" onClick={() => navigate("contact")}>Book a Consultation</button>
+                <button className="btn-secondary" onClick={() => navigate("services")}>Our Practice Areas</button>
+              </div>
+            </div>
+            <div className="hero-visual">
+              <div className="hero-card">
+                <div className="hero-card-icon">⚖️</div>
+                <h3>Your Legal Partner in Ontario</h3>
+                <p>We handle the legal complexities so you can focus on what matters most — your family, your business, and your future.</p>
+                <div className="hero-stats">
+                  <div>
+                    <div className="hero-stat-num">6+</div>
+                    <div className="hero-stat-label">Practice Areas</div>
+                  </div>
+                  <div>
+                    <div className="hero-stat-num">100%</div>
+                    <div className="hero-stat-label">Client Focused</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About Preview */}
+        <section className="section-full about-bg">
+          <FadeIn>
+            <div className="about-grid" style={{ padding: "0 40px" }}>
+              <div className="about-img-wrap">
+                <div className="about-img-block">
+                  <img src={LOGO_URL} alt="Shalin Saroya Law" style={{ height: 80, opacity: 0.25 }} />
+                </div>
+                <div className="about-img-accent" />
+              </div>
+              <div className="about-text">
+                <div className="section-badge">About Us</div>
+                <h3>Committed to Justice,<br />Dedicated to You</h3>
+                <p>Shalin Saroya Law was founded on the belief that quality legal representation should be accessible, transparent, and personalized. As a licensed Ontario firm, we bring fresh energy and deep commitment to every client relationship.</p>
+                <p>Our practice spans real estate, wills and estates, corporate law, and family matters, providing comprehensive coverage for individuals and businesses throughout Ontario.</p>
+                <div className="about-values">
+                  <div className="about-value"><div className="about-value-dot" />Integrity First</div>
+                  <div className="about-value"><div className="about-value-dot" />Client-Centred</div>
+                  <div className="about-value"><div className="about-value-dot" />Results Driven</div>
+                  <div className="about-value"><div className="about-value-dot" />Community Rooted</div>
+                </div>
+                <button className="btn-primary" style={{ marginTop: 32 }} onClick={() => navigate("about")}>Learn More About Us</button>
+              </div>
+            </div>
+          </FadeIn>
+        </section>
+
+        {/* Services Preview */}
+        <section className="section">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-badge">Practice Areas</div>
+              <h2 className="section-title">How We Can Help You</h2>
+              <p className="section-subtitle">We offer a full spectrum of legal services tailored to your unique needs, providing expert guidance from consultation to resolution.</p>
+            </div>
+          </FadeIn>
+          <div className="services-grid">
+            {PRACTICE_AREAS.map((s, i) => (
+              <FadeIn key={i} style={{ transitionDelay: `${i * 0.08}s` }}>
+                <div className="service-card">
+                  <div className="service-icon">{s.icon}</div>
+                  <div className="service-title">{s.title}</div>
+                  <div className="service-desc">{s.desc}</div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="section-full testimonials-bg">
+          <FadeIn>
+            <div className="section-header" style={{ padding: "0 40px" }}>
+              <div className="section-badge" style={{ color: "var(--gold)" }}>Testimonials</div>
+              <h2 className="section-title" style={{ color: "var(--cream)" }}>What Our Clients Say</h2>
+            </div>
+          </FadeIn>
+          <div className="testimonials-grid" style={{ padding: "0 40px" }}>
+            {TESTIMONIALS.map((t, i) => (
+              <FadeIn key={i} style={{ transitionDelay: `${i * 0.1}s` }}>
+                <div className="testimonial-card">
+                  <div className="testimonial-quote">"</div>
+                  <p className="testimonial-text">{t.text}</p>
+                  <div className="testimonial-author">{t.author}</div>
+                  <div className="testimonial-area">{t.area}</div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Banner */}
+        <section className="cta-banner">
+          <h2>Ready to Discuss Your Legal Needs?</h2>
+          <p>Schedule a consultation with Shalin Saroya Law today.</p>
+          <button className="cta-banner-btn" onClick={() => navigate("contact")}>Book Your Consultation</button>
+        </section>
+      </>
+    );
+  }
+
+  function renderAbout() {
+    return (
+      <section style={{ paddingTop: 100 }}>
+        <div className="section">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-badge">About Shalin Saroya Law</div>
+              <h2 className="section-title">Built on Trust, Driven by Results</h2>
+              <p className="section-subtitle">A modern Ontario law practice founded on the principles of integrity, accessibility, and exceptional client service.</p>
+            </div>
+          </FadeIn>
+          <FadeIn>
+            <div className="about-grid">
+              <div className="about-img-wrap">
+                <div className="about-img-block">
+                  <img src={LOGO_URL} alt="Shalin Saroya Law" style={{ height: 80, opacity: 0.25 }} />
+                </div>
+                <div className="about-img-accent" />
+              </div>
+              <div className="about-text">
+                <h3>Our Story</h3>
+                <p>Shalin Saroya Law was established with a clear mission: to provide Ontario residents and businesses with legal counsel that is not only expert and thorough, but genuinely personal. We believe that navigating the legal system should never feel intimidating or impersonal.</p>
+                <p>Having recently achieved full qualification to practice law in Ontario, our firm brings a fresh, modern perspective to legal practice while maintaining the highest standards of professionalism and ethical conduct.</p>
+                <p>Whether you're purchasing your first home, planning your estate, starting a business, or facing a legal dispute, we are here to guide you with clarity and confidence.</p>
+              </div>
+            </div>
+          </FadeIn>
+          <FadeIn>
+            <div style={{ marginTop: 80 }}>
+              <h3 style={{ fontFamily: "var(--serif)", fontSize: 32, fontWeight: 500, color: "var(--navy)", textAlign: "center", marginBottom: 48 }}>Our Core Values</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 32 }}>
+                {[
+                  { icon: "🤝", title: "Integrity", desc: "We uphold the highest ethical standards in every interaction and decision, ensuring your trust is never misplaced." },
+                  { icon: "🎯", title: "Precision", desc: "Every legal document, argument, and strategy is crafted with meticulous attention to detail and accuracy." },
+                  { icon: "💬", title: "Transparency", desc: "Clear communication about process, costs, and expectations — no legal jargon, no surprises, no hidden fees." },
+                  { icon: "❤️", title: "Compassion", desc: "We understand that legal matters often arise during life's most challenging moments, and we treat every client with empathy." },
+                ].map((v, i) => (
+                  <div key={i} className="service-card" style={{ textAlign: "center" }}>
+                    <div style={{ fontSize: 40, marginBottom: 16 }}>{v.icon}</div>
+                    <div className="service-title">{v.title}</div>
+                    <div className="service-desc">{v.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+        <section className="cta-banner">
+          <h2>Let Us Help You Navigate the Law</h2>
+          <p>Get in touch for a consultation — we're here to listen and advise.</p>
+          <button className="cta-banner-btn" onClick={() => navigate("contact")}>Contact Us Today</button>
+        </section>
+      </section>
+    );
+  }
+
+  function renderServices() {
+    return (
+      <section style={{ paddingTop: 100 }}>
+        <div className="section">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-badge">Our Practice Areas</div>
+              <h2 className="section-title">Comprehensive Legal Services</h2>
+              <p className="section-subtitle">Providing knowledgeable and dedicated representation across a wide range of legal matters in Ontario.</p>
+            </div>
+          </FadeIn>
+          <div className="services-grid">
+            {PRACTICE_AREAS.map((s, i) => (
+              <FadeIn key={i} style={{ transitionDelay: `${i * 0.08}s` }}>
+                <div className="service-card">
+                  <div className="service-icon">{s.icon}</div>
+                  <div className="service-title">{s.title}</div>
+                  <div className="service-desc">{s.desc}</div>
+                  <button className="btn-secondary" style={{ marginTop: 20, padding: "10px 20px", fontSize: 11 }} onClick={() => navigate("contact")}>
+                    Inquire Now →
+                  </button>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+        <section className="cta-banner">
+          <h2>Need Legal Assistance?</h2>
+          <p>We're ready to discuss your situation and provide expert guidance.</p>
+          <button className="cta-banner-btn" onClick={() => navigate("contact")}>Schedule a Consultation</button>
+        </section>
+      </section>
+    );
+  }
+
+  function renderTeam() {
+    return (
+      <section style={{ paddingTop: 100 }}>
+        <div className="section-full team-bg">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-badge">Our Team</div>
+              <h2 className="section-title">Meet the People Behind the Practice</h2>
+              <p className="section-subtitle">A dedicated team of legal professionals committed to delivering exceptional results for every client.</p>
+            </div>
+          </FadeIn>
+          <div className="team-grid" style={{ padding: "0 40px" }}>
+            {TEAM_MEMBERS.map((m, i) => (
+              <FadeIn key={i} style={{ transitionDelay: `${i * 0.1}s` }}>
+                <div className="team-card">
+                  <div className="team-photo" style={{ background: `linear-gradient(135deg, ${m.color} 0%, ${m.color}dd 100%)` }}>
+                    {m.name.split(" ").map(n => n[0]).join("")}
+                  </div>
+                  <div className="team-info">
+                    <div className="team-name">{m.name}</div>
+                    <div className="team-role">{m.role}</div>
+                    <div className="team-bio">{m.bio}</div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+        <section className="cta-banner">
+          <h2>Want to Join Our Team?</h2>
+          <p>We're always looking for talented legal professionals who share our values.</p>
+          <button className="cta-banner-btn" onClick={() => navigate("contact")}>Get in Touch</button>
+        </section>
+      </section>
+    );
+  }
+
+  function renderCalculators() {
+    const ltt = calcLTT();
+    const mort = calcMortgage();
+    const eat = calcEAT();
+    return (
+      <section style={{ paddingTop: 100 }}>
+        <div className="section">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-badge">Legal Calculators</div>
+              <h2 className="section-title">Ontario Legal Calculators</h2>
+              <p className="section-subtitle">Estimate costs for common Ontario legal transactions. These calculators are for informational purposes only.</p>
+            </div>
+          </FadeIn>
+          <div className="calc-tabs">
+            {["Land Transfer Tax", "Mortgage", "Estate Admin Tax"].map((t, i) => (
+              <button key={i} className={`calc-tab ${calcTab === i ? "active" : ""}`} onClick={() => setCalcTab(i)}>{t}</button>
+            ))}
+          </div>
+
+          {calcTab === 0 && (
+            <FadeIn key="ltt">
+              <div className="calc-body">
+                <h3>Land Transfer Tax Calculator (Ontario)</h3>
+                <p>Calculate the provincial land transfer tax on your Ontario property purchase.</p>
+                <div className="form-group">
+                  <label className="form-label">Purchase Price ($)</label>
+                  <input className="form-input" type="number" placeholder="e.g. 750000" value={lttPrice} onChange={e => setLttPrice(e.target.value)} />
+                </div>
+                <div className="form-checkbox-row">
+                  <input type="checkbox" id="fthb" checked={lttFirstTime} onChange={e => setLttFirstTime(e.target.checked)} />
+                  <label htmlFor="fthb">First-time home buyer (eligible for rebate up to $4,000)</label>
+                </div>
+                {ltt && (
+                  <div className="calc-result">
+                    <h4>Estimated Land Transfer Tax</h4>
+                    <div className="big-num">{fmt(ltt.total)}</div>
+                    <div style={{ marginTop: 16 }}>
+                      <div className="calc-result-row"><span>Provincial LTT</span><span>{fmt(ltt.tax)}</span></div>
+                      {lttFirstTime && <div className="calc-result-row"><span>First-Time Buyer Rebate</span><span>-{fmt(ltt.rebate)}</span></div>}
+                      <div className="calc-result-row"><span>Total Payable</span><span>{fmt(ltt.total)}</span></div>
+                    </div>
+                    <p className="calc-disclaimer">This calculator provides the Ontario provincial land transfer tax only. Toronto purchasers may also owe the Municipal Land Transfer Tax. Contact us for a precise estimate.</p>
+                  </div>
+                )}
+              </div>
+            </FadeIn>
+          )}
+
+          {calcTab === 1 && (
+            <FadeIn key="mort">
+              <div className="calc-body">
+                <h3>Mortgage Calculator (Ontario)</h3>
+                <p>Estimate your monthly mortgage payment based on Canadian semi-annual compounding.</p>
+                <div className="form-group">
+                  <label className="form-label">Mortgage Amount ($)</label>
+                  <input className="form-input" type="number" placeholder="e.g. 500000" value={mortPrincipal} onChange={e => setMortPrincipal(e.target.value)} />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Annual Interest Rate (%)</label>
+                  <input className="form-input" type="number" step="0.01" placeholder="e.g. 5.25" value={mortRate} onChange={e => setMortRate(e.target.value)} />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Amortization Period (Years)</label>
+                  <select className="form-select" value={mortAmort} onChange={e => setMortAmort(e.target.value)}>
+                    {[10, 15, 20, 25, 30].map(y => <option key={y} value={y}>{y} years</option>)}
+                  </select>
+                </div>
+                {mort && (
+                  <div className="calc-result">
+                    <h4>Estimated Monthly Payment</h4>
+                    <div className="big-num">{fmt(mort.payment)}</div>
+                    <div style={{ marginTop: 16 }}>
+                      <div className="calc-result-row"><span>Monthly Payment</span><span>{fmt(mort.payment)}</span></div>
+                      <div className="calc-result-row"><span>Total Interest</span><span>{fmt(mort.totalInterest)}</span></div>
+                      <div className="calc-result-row"><span>Total Cost of Mortgage</span><span>{fmt(mort.totalPaid)}</span></div>
+                    </div>
+                    <p className="calc-disclaimer">This calculation uses semi-annual compounding as standard in Canada. Actual payments may vary based on your lender's terms. This is for estimation purposes only.</p>
+                  </div>
+                )}
+              </div>
+            </FadeIn>
+          )}
+
+          {calcTab === 2 && (
+            <FadeIn key="eat">
+              <div className="calc-body">
+                <h3>Estate Administration Tax Calculator (Ontario)</h3>
+                <p>Calculate the estate administration tax (probate fees) payable in Ontario.</p>
+                <div className="form-group">
+                  <label className="form-label">Total Estate Value ($)</label>
+                  <input className="form-input" type="number" placeholder="e.g. 1000000" value={estateValue} onChange={e => setEstateValue(e.target.value)} />
+                </div>
+                {eat && (
+                  <div className="calc-result">
+                    <h4>Estimated Estate Administration Tax</h4>
+                    <div className="big-num">{fmt(eat.tax)}</div>
+                    <div style={{ marginTop: 16 }}>
+                      <div className="calc-result-row"><span>First $50,000 @ $5 per $1,000</span><span>{fmt(Math.min(parseFloat(estateValue), 50000) * 0.005)}</span></div>
+                      {parseFloat(estateValue) > 50000 && (
+                        <div className="calc-result-row"><span>Amount over $50,000 @ $15 per $1,000</span><span>{fmt((parseFloat(estateValue) - 50000) * 0.015)}</span></div>
+                      )}
+                      <div className="calc-result-row"><span>Total Estate Admin Tax</span><span>{fmt(eat.tax)}</span></div>
+                    </div>
+                    <p className="calc-disclaimer">Estate administration tax is calculated based on the value of the estate as filed with the Ontario Superior Court. Proper estate planning can help minimize these costs. Contact us for personalized advice.</p>
+                  </div>
+                )}
+              </div>
+            </FadeIn>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  function renderContact() {
+    return (
+      <section style={{ paddingTop: 100 }}>
+        <div className="section-full contact-bg">
+          <FadeIn>
+            <div className="section-header">
+              <div className="section-badge">Get in Touch</div>
+              <h2 className="section-title">Contact Shalin Saroya Law</h2>
+              <p className="section-subtitle">Whether you have a question or are ready to book a consultation, we'd love to hear from you.</p>
+            </div>
+          </FadeIn>
+          <div className="contact-grid" style={{ padding: "0 40px" }}>
+            <FadeIn>
+              <div className="contact-info-card">
+                <h3>Contact Information</h3>
+                <div className="contact-info-item">
+                  <div className="contact-info-icon">📍</div>
+                  <div>
+                    <div className="contact-info-label">Office Address</div>
+                    <div className="contact-info-value">123 Main Street, Suite 400<br />Toronto, Ontario M5V 2T6</div>
+                  </div>
+                </div>
+                <div className="contact-info-item">
+                  <div className="contact-info-icon">📞</div>
+                  <div>
+                    <div className="contact-info-label">Phone</div>
+                    <div className="contact-info-value">(416) 555-0199</div>
+                  </div>
+                </div>
+                <div className="contact-info-item">
+                  <div className="contact-info-icon">✉️</div>
+                  <div>
+                    <div className="contact-info-label">Email</div>
+                    <div className="contact-info-value">info@shalinsaroyalaw.ca</div>
+                  </div>
+                </div>
+                <div className="contact-divider" />
+                <div>
+                  <div className="footer-hours-title">Business Hours</div>
+                  <div className="footer-hours-row">Monday – Friday: 9:00 AM – 6:00 PM</div>
+                  <div className="footer-hours-row">Saturday: 10:00 AM – 2:00 PM</div>
+                  <div className="footer-hours-row">Sunday: Closed</div>
+                </div>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="contact-book-btn">
+                  📅 Book an Appointment with Shalin
+                </a>
+              </div>
+            </FadeIn>
+
+            <FadeIn style={{ transitionDelay: "0.15s" }}>
+              <div className="contact-form">
+                <h3>Send Us a Message</h3>
+                <p>Fill out the form below and we'll get back to you within one business day.</p>
+                {formSubmitted ? (
+                  <div style={{ textAlign: "center", padding: "40px 0" }}>
+                    <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
+                    <h3 style={{ fontFamily: "var(--serif)", fontSize: 24, color: "var(--navy)", marginBottom: 8 }}>Message Sent!</h3>
+                    <p style={{ fontFamily: "var(--sans)", fontSize: 15, color: "var(--slate)" }}>Thank you for reaching out. We'll respond within one business day.</p>
+                  </div>
+                ) : (
+                  <form action={FORMSPREE_URL} method="POST" onSubmit={(e) => {
+                    e.preventDefault();
+                    setFormSubmitted(true);
+                    // In production, this would actually submit to Formspree
+                  }}>
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label className="form-label">First Name</label>
+                        <input className="form-input" name="firstName" required placeholder="John" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Last Name</label>
+                        <input className="form-input" name="lastName" required placeholder="Doe" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} />
+                      </div>
+                    </div>
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label className="form-label">Email</label>
+                        <input className="form-input" type="email" name="email" required placeholder="john@example.com" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Phone</label>
+                        <input className="form-input" type="tel" name="phone" placeholder="(416) 555-0000" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Area of Interest</label>
+                      <select className="form-select" name="service" value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })}>
+                        <option value="">Select a practice area...</option>
+                        {PRACTICE_AREAS.map((a, i) => <option key={i} value={a.title}>{a.title}</option>)}
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Your Message</label>
+                      <textarea className="form-textarea" name="message" required placeholder="Tell us about your legal matter..." value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} />
+                    </div>
+                    <button type="submit" className="form-submit">Send Message</button>
+                  </form>
+                )}
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <>
+      {/* Navigation */}
+      <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
+        <div className="nav-inner">
+          <img src={LOGO_URL} alt="Shalin Saroya Law" className="nav-logo" onClick={() => navigate("home")} />
+          <div className="nav-links">
+            {NAV_LINKS.map(l => (
+              <button key={l.id} className={`nav-link ${page === l.id ? "active" : ""}`} onClick={() => navigate(l.id)}>
+                {l.label}
+              </button>
+            ))}
+            <button className="nav-cta-btn" onClick={() => navigate("contact")}>Book Now</button>
+          </div>
+          <button className={`hamburger ${mobileOpen ? "open" : ""}`} onClick={() => setMobileOpen(!mobileOpen)}>
+            <span /><span /><span />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
+        {NAV_LINKS.map(l => (
+          <button key={l.id} className="mobile-menu-link" onClick={() => navigate(l.id)}>{l.label}</button>
+        ))}
+      </div>
+
+      {/* Page Content */}
+      <main>{renderPage()}</main>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-top">
+          <div className="footer-brand">
+            <img src={LOGO_URL} alt="Shalin Saroya Law" />
+            <p>Providing trusted, personalized legal services to individuals and businesses throughout Ontario.</p>
+            <div className="footer-hours">
+              <div className="footer-hours-title">Business Hours</div>
+              <div className="footer-hours-row">Mon – Fri: 9:00 AM – 6:00 PM</div>
+              <div className="footer-hours-row">Saturday: 10:00 AM – 2:00 PM</div>
+              <div className="footer-hours-row">Sunday: Closed</div>
+            </div>
+          </div>
+
+          <div>
+            <div className="footer-col-title">Pages</div>
+            {NAV_LINKS.map(l => (
+              <button key={l.id} className="footer-link" onClick={() => navigate(l.id)}>{l.label}</button>
+            ))}
+          </div>
+
+          <div>
+            <div className="footer-col-title">Calculators</div>
+            <button className="footer-link" onClick={() => { navigate("calculators"); setCalcTab(0); }}>Land Transfer Tax Calculator</button>
+            <button className="footer-link" onClick={() => { navigate("calculators"); setCalcTab(1); }}>Mortgage Calculator</button>
+            <button className="footer-link" onClick={() => { navigate("calculators"); setCalcTab(2); }}>Estate Admin Tax Calculator</button>
+            <div style={{ marginTop: 24 }}>
+              <div className="footer-col-title">Contact Us</div>
+              <button className="footer-link" onClick={() => navigate("contact")}>Send a Message</button>
+              <a className="footer-link" href={`tel:4165550199`}>(416) 555-0199</a>
+              <a className="footer-link" href={`mailto:info@shalinsaroyalaw.ca`}>info@shalinsaroyalaw.ca</a>
+            </div>
+          </div>
+
+          <div>
+            <div className="footer-col-title">Follow Us</div>
+            <div className="footer-social">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" title="Facebook">f</a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" title="Instagram">ig</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" title="LinkedIn">in</a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" title="X">𝕏</a>
+            </div>
+            <div style={{ marginTop: 32 }}>
+              <div className="footer-col-title">Book an Appointment</div>
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="footer-link" style={{ color: "var(--gold)" }}>
+                Schedule with Shalin →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <div className="footer-copy">© Shalin Saroya Law Professional Corporation 2026. All rights reserved.</div>
+          <div className="footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Disclaimer</a>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+
+    // Mount the application
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(React.createElement(App));
+  </script>
+</body>
+</html>
