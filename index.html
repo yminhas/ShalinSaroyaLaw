@@ -60,10 +60,10 @@
   }
   .nav-inner {
     max-width: 1280px; margin: 0 auto;
-    padding: 0 40px; height: 80px;
+    padding: 0 40px; height: 90px;
     display: flex; align-items: center; justify-content: space-between;
   }
-  .nav-logo { height: 60px; cursor: pointer; transition: var(--transition); mix-blend-mode: multiply; }
+  .nav-logo { height: 80px; cursor: pointer; transition: var(--transition); }
   .nav-logo:hover { opacity: 0.8; }
   .nav-links { display: flex; gap: 36px; align-items: center; }
   .nav-link {
@@ -129,7 +129,7 @@
     min-height: 100vh; display: flex; align-items: center;
     background: var(--cream);
     position: relative; overflow: hidden;
-    padding: 120px 40px 80px;
+    padding: 130px 40px 80px;
   }
   .hero::before {
     content: ''; position: absolute; top: -200px; right: -200px;
@@ -272,16 +272,26 @@
   }
   .about-img-block {
     width: 100%; aspect-ratio: 4/3;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    background: var(--navy-deep);
     display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
   }
+  .about-img-block img.about-photo {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
   .about-img-block img { height: 100px; opacity: 0.3; mix-blend-mode: screen; }
   .about-img-accent {
-    position: absolute; bottom: -20px; right: -20px;
-    width: 140px; height: 140px;
-    border: 3px solid var(--gold);
+    position: absolute; bottom: -16px; right: -16px;
+    width: 120px; height: 120px;
+    background: var(--cream-light);
+    display: flex; align-items: center; justify-content: center;
+    padding: 12px;
+    box-shadow: var(--shadow-md);
     pointer-events: none;
+  }
+  .about-img-accent img {
+    width: 100%; height: 100%; object-fit: contain;
+    mix-blend-mode: multiply;
   }
   .about-text h3 {
     font-family: var(--serif); font-size: 36px; font-weight: 500;
@@ -615,7 +625,10 @@
     gap: 48px; padding-bottom: 60px;
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-  .footer-brand img { height: 50px; margin-bottom: 20px; filter: brightness(0) invert(1); opacity: 0.9; }
+  .footer-brand img {
+    height: 70px; margin-bottom: 20px;
+    mix-blend-mode: normal;
+  }
   .footer-brand p {
     font-family: var(--sans); font-size: 14px;
     line-height: 1.7; color: rgba(245,240,232,0.55);
@@ -720,6 +733,7 @@
     const { useState, useEffect, useRef, useCallback } = React;
 
     const LOGO_URL = "logo.png"; // Place your logo.png in the same folder as this HTML file
+    const LOGO_LIGHT_URL = "logo-light.png"; // Light version for dark backgrounds
 const FORMSPREE_URL = "https://formspree.io/f/mlgogbbo";
 const CALENDLY_URL = "https://calendly.com/shalinsaroya/30min";
 
@@ -734,18 +748,17 @@ const NAV_LINKS = [
 
 const PRACTICE_AREAS = [
   { icon: "🏠", title: "Real Estate Law", desc: "Residential and commercial property transactions, title searches, mortgage refinancing, and land transfer guidance across Ontario." },
-  { icon: "📜", title: "Wills & Estates", desc: "Estate planning, will drafting, powers of attorney, estate administration, and probate applications to protect your legacy." },
-  { icon: "👔", title: "Corporate & Business Law", desc: "Business incorporation, shareholder agreements, corporate restructuring, and ongoing commercial legal counsel." },
-  { icon: "⚖️", title: "Civil Litigation", desc: "Dispute resolution, breach of contract claims, property disputes, and effective courtroom representation." },
+  { icon: "⚖️", title: "Wills & Estates", desc: "Estate planning, will drafting, powers of attorney, estate administration, and probate applications to protect your legacy." },
+  { icon: "👔", title: "Business Law", desc: "Business incorporation, shareholder agreements, corporate restructuring, and ongoing commercial legal counsel." },
+  { icon: "📜", title: "Notarization & Affidavits", desc: "We provide comprehensive, end-to-end document notarization and legalization services." },
   { icon: "👪", title: "Family Law", desc: "Separation agreements, divorce proceedings, child custody, spousal support, and property division matters." },
-  { icon: "🛡️", title: "Immigration Law", desc: "Work permits, permanent residency applications, family sponsorship, and citizenship proceedings." },
 ];
 
 const TEAM_MEMBERS = [
   { name: "Shalin Saroya", role: "Founder & Principal Lawyer", bio: "Shalin is the founder of Shalin Saroya Law, bringing a client-first approach to legal practice in Ontario. With a deep commitment to justice and community, Shalin provides personalized legal counsel across multiple practice areas.", color: "#2B3A52" },
-  { name: "Priya Mehta", role: "Associate Lawyer", bio: "Priya specializes in real estate and corporate law, guiding clients through complex transactions with precision and care. Her attention to detail ensures every deal closes smoothly.", color: "#4A6741" },
-  { name: "David Chen", role: "Associate Lawyer", bio: "David focuses on family law and civil litigation, advocating passionately for his clients' rights. His empathetic approach and courtroom experience make him a trusted advisor.", color: "#6B4C3B" },
-  { name: "Amira Hassan", role: "Legal Assistant", bio: "Amira keeps the firm running seamlessly, managing client communications, scheduling, and document preparation with exceptional organizational skill.", color: "#5B4A6B" },
+  { name: "Yashin Minhas", role: "Associate Lawyer", bio: "Yashin specializes in real estate and corporate law, guiding clients through complex transactions with precision and care. His attention to detail ensures every deal closes smoothly.", color: "#4A6741" },
+  { name: "Komel Patel", role: "Associate Lawyer", bio: "Komel focuses on family law and civil litigation, advocating passionately for her clients' rights. Her empathetic approach and courtroom experience make her a trusted advisor.", color: "#6B4C3B" },
+  { name: "Scotch Saroya", role: "Legal Assistant", bio: "Scotch keeps the firm running seamlessly, managing client communications, scheduling, and document preparation with exceptional organizational skill.", color: "#5B4A6B" },
 ];
 
 const TESTIMONIALS = [
@@ -903,7 +916,7 @@ function App() {
                 <p>We handle the legal complexities so you can focus on what matters most — your family, your business, and your future.</p>
                 <div className="hero-stats">
                   <div>
-                    <div className="hero-stat-num">6+</div>
+                    <div className="hero-stat-num">4+</div>
                     <div className="hero-stat-label">Practice Areas</div>
                   </div>
                   <div>
@@ -922,9 +935,11 @@ function App() {
             <div className="about-grid" style={{ padding: "0 40px" }}>
               <div className="about-img-wrap">
                 <div className="about-img-block">
-                  <img src={LOGO_URL} alt="Shalin Saroya Law" style={{ height: 80, opacity: 0.25 }} />
+                  <img className="about-photo" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80" alt="Legal consultation" />
                 </div>
-                <div className="about-img-accent" />
+                <div className="about-img-accent">
+                  <img src={LOGO_URL} alt="Shalin Saroya Law" />
+                </div>
               </div>
               <div className="about-text">
                 <div className="section-badge">About Us</div>
@@ -1012,9 +1027,11 @@ function App() {
             <div className="about-grid">
               <div className="about-img-wrap">
                 <div className="about-img-block">
-                  <img src={LOGO_URL} alt="Shalin Saroya Law" style={{ height: 80, opacity: 0.25 }} />
+                  <img className="about-photo" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Legal documents and consultation" />
                 </div>
-                <div className="about-img-accent" />
+                <div className="about-img-accent">
+                  <img src={LOGO_URL} alt="Shalin Saroya Law" />
+                </div>
               </div>
               <div className="about-text">
                 <h3>Our Story</h3>
@@ -1259,14 +1276,14 @@ function App() {
                   <div className="contact-info-icon">📍</div>
                   <div>
                     <div className="contact-info-label">Office Address</div>
-                    <div className="contact-info-value">123 Main Street, Suite 400<br />Toronto, Ontario M5V 2T6</div>
+                    <div className="contact-info-value">31 Wingate Crescent, Suite 100<br />Richmond Hill, Ontario L4B 3J3</div>
                   </div>
                 </div>
                 <div className="contact-info-item">
                   <div className="contact-info-icon">📞</div>
                   <div>
                     <div className="contact-info-label">Phone</div>
-                    <div className="contact-info-value">(416) 555-0199</div>
+                    <div className="contact-info-value">(416) 732-9804</div>
                   </div>
                 </div>
                 <div className="contact-info-item">
@@ -1279,8 +1296,8 @@ function App() {
                 <div className="contact-divider" />
                 <div>
                   <div className="footer-hours-title">Business Hours</div>
-                  <div className="footer-hours-row">Monday – Friday: 9:00 AM – 6:00 PM</div>
-                  <div className="footer-hours-row">Saturday: 10:00 AM – 2:00 PM</div>
+                  <div className="footer-hours-row">Monday – Friday: 9:00 AM – 5:00 PM</div>
+                  <div className="footer-hours-row">Saturday: Closed</div>
                   <div className="footer-hours-row">Sunday: Closed</div>
                 </div>
                 <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="contact-book-btn">
@@ -1300,10 +1317,25 @@ function App() {
                     <p style={{ fontFamily: "var(--sans)", fontSize: 15, color: "var(--slate)" }}>Thank you for reaching out. We'll respond within one business day.</p>
                   </div>
                 ) : (
-                  <form action={FORMSPREE_URL} method="POST" onSubmit={(e) => {
+                  <form onSubmit={async (e) => {
                     e.preventDefault();
-                    setFormSubmitted(true);
-                    // In production, this would actually submit to Formspree
+                    setFormSubmitted('sending');
+                    try {
+                      const res = await fetch(FORMSPREE_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(formData),
+                      });
+                      if (res.ok) {
+                        setFormSubmitted(true);
+                      } else {
+                        alert('Something went wrong. Please try again or contact us directly.');
+                        setFormSubmitted(false);
+                      }
+                    } catch (err) {
+                      alert('Could not send message. Please check your connection or contact us directly.');
+                      setFormSubmitted(false);
+                    }
                   }}>
                     <div className="form-row">
                       <div className="form-group">
@@ -1322,7 +1354,7 @@ function App() {
                       </div>
                       <div className="form-group">
                         <label className="form-label">Phone</label>
-                        <input className="form-input" type="tel" name="phone" placeholder="(416) 555-0000" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+                        <input className="form-input" type="tel" name="phone" placeholder="(416) 732-9804" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
                       </div>
                     </div>
                     <div className="form-group">
@@ -1337,7 +1369,9 @@ function App() {
                       <label className="form-label">Your Message</label>
                       <textarea className="form-textarea" name="message" required placeholder="Tell us about your legal matter..." value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} />
                     </div>
-                    <button type="submit" className="form-submit">Send Message</button>
+                    <button type="submit" className="form-submit" disabled={formSubmitted === 'sending'}>
+                      {formSubmitted === 'sending' ? 'Sending...' : 'Send Message'}
+                    </button>
                   </form>
                 )}
               </div>
@@ -1382,12 +1416,12 @@ function App() {
       <footer className="footer">
         <div className="footer-top">
           <div className="footer-brand">
-            <img src={LOGO_URL} alt="Shalin Saroya Law" />
+            <img src={LOGO_LIGHT_URL} alt="Shalin Saroya Law" />
             <p>Providing trusted, personalized legal services to individuals and businesses throughout Ontario.</p>
             <div className="footer-hours">
               <div className="footer-hours-title">Business Hours</div>
               <div className="footer-hours-row">Mon – Fri: 9:00 AM – 6:00 PM</div>
-              <div className="footer-hours-row">Saturday: 10:00 AM – 2:00 PM</div>
+              <div className="footer-hours-row">Saturday: Closed</div>
               <div className="footer-hours-row">Sunday: Closed</div>
             </div>
           </div>
@@ -1407,7 +1441,7 @@ function App() {
             <div style={{ marginTop: 24 }}>
               <div className="footer-col-title">Contact Us</div>
               <button className="footer-link" onClick={() => navigate("contact")}>Send a Message</button>
-              <a className="footer-link" href={`tel:4165550199`}>(416) 555-0199</a>
+              <a className="footer-link" href={`tel:4167329804`}>(416) 732-9804</a>
               <a className="footer-link" href={`mailto:info@shalinsaroyalaw.ca`}>info@shalinsaroyalaw.ca</a>
             </div>
           </div>
